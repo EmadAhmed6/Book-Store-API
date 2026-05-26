@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv").config();
 app.use(express.json());
-const { notFound, errorHandler } = require("./middlewars/errors");
+const { notFound, errorHandler } = require("./middlewares/errors");
 const { connectToDB } = require("./config/db");
 connectToDB();
 app.use("/books", require("./routers/books"));
