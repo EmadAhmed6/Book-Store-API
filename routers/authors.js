@@ -11,7 +11,11 @@ const { verifyTokenAndAdmin } = require("../middlewars/verifyToken");
 router.get(
   "/",
   asyncHandler(async (req, res) => {
-    const authors = await Author.find();
+    const { pageNumber } = req.query;
+    const authorsPerPage = 2;
+    const authors = await Author.find()
+      .skip((pageNumber - 1) * authorsPerPage)
+      .limit(2);
     res.status(200).json(authors);
   }),
 );
